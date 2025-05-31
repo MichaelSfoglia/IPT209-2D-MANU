@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthenticatonController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +21,10 @@ Route::post('/register', [AuthenticatonController::class, 'register']);
 Route::post('/login', [AuthenticatonController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::get('/get-users', [UserController::class, 'getUsers']);
+    Route::post('/add-user', [UserController::class, 'addUser']);
+    Route::put('/edit-user/{id}', [UserController::class, 'editUser']);
+    Route::delte('/delete-user/{id}', [UserController::class, 'deleteUser']);
+
+    Route::post('/logout', [AuthenticationController::class, 'logout']);
 });

@@ -9,7 +9,9 @@ class AccountController extends Controller
 {
     public function getAccounts()
     {
-        $accounts = Account::with('', '', '')->get();
+        $accounts = Account::with('role', '', '')->get();
+
+        return response()->json(['accounts' => $accounts]);
     }
 
     /*
